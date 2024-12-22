@@ -11,55 +11,61 @@
 
 namespace carla {
 namespace client {
-
+//获取演员（Actor）的位置
   geom::Location Actor::GetLocation() const {
+    //通过锁定当前情节（Episode）并获取当前演员的位置
     return GetEpisode().Lock()->GetActorLocation(*this);
+
   }
 
   geom::Transform Actor::GetTransform() const {
+    //获取演员（Actor）的变换（包括位置和朝向）
     return GetEpisode().Lock()->GetActorTransform(*this);
+       //获取演员（Actor）的速度
   }
 
   geom::Vector3D Actor::GetVelocity() const {
     return GetEpisode().Lock()->GetActorVelocity(*this);
+       //获取演员（Actor）的角速度
   }
 
   geom::Vector3D Actor::GetAngularVelocity() const {
     return GetEpisode().Lock()->GetActorAngularVelocity(*this);
+       //获取演员（Actor）的加速度
   }
-
+   //获取演员（Actor）特定组件在世界坐标系中的变换
   geom::Vector3D Actor::GetAcceleration() const {
     return GetEpisode().Lock()->GetActorAcceleration(*this);
   }
-
+//获取演员（Actor）特定组件在相对坐标系中的变换
   geom::Transform Actor::GetComponentWorldTransform(const std::string componentName) const {
     return GetEpisode().Lock()->GetActorComponentWorldTransform(*this, componentName);
   }
-
+ //获取演员（Actor）所有骨骼在世界坐标系中的变换
   geom::Transform Actor::GetComponentRelativeTransform(const std::string componentName) const {
     return GetEpisode().Lock()->GetActorComponentRelativeTransform(*this, componentName);
   }
-
+ //获取演员（Actor）所有骨骼在相对坐标系中的变换
   std::vector<geom::Transform> Actor::GetBoneWorldTransforms() const {
     return GetEpisode().Lock()->GetActorBoneWorldTransforms(*this);
   }
-
+ //获取演员（Actor）所有组件的名称
   std::vector<geom::Transform> Actor::GetBoneRelativeTransforms() const {
     return GetEpisode().Lock()->GetActorBoneRelativeTransforms(*this);
   }
-
+ //获取演员（Actor）所有骨骼的名称
   std::vector<std::string> Actor::GetComponentNames() const {
     return GetEpisode().Lock()->GetActorComponentNames(*this);
   }
-
+// 获取演员（Actor）所有套接字（Socket）在世界坐标系中的变换
   std::vector<std::string> Actor::GetBoneNames() const {
     return GetEpisode().Lock()->GetActorBoneNames(*this);
   } 
-
+  // 获取演员（Actor）所有套接字（Socket）在相对坐标系中的变换
   std::vector<geom::Transform> Actor::GetSocketWorldTransforms() const {
     return GetEpisode().Lock()->GetActorSocketWorldTransforms(*this);
   }
-
+// 获取演员（Actor）所有套接字（Socket）的名称
   std::vector<geom::Transform> Actor::GetSocketRelativeTransforms() const {
     return GetEpisode().Lock()->GetActorSocketRelativeTransforms(*this);
   }
